@@ -11,7 +11,7 @@ public class Utils
 
     public static boolean isEmail(String string)
     {
-        Pattern regex = Pattern.compile("[a-z]+[0-9]?@+[a-z]+.com?", Pattern.CASE_INSENSITIVE);
+        Pattern regex = Pattern.compile("(.+)@(.+)$", Pattern.CASE_INSENSITIVE);
         return regex.matcher(string).matches();
     }
 }
