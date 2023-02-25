@@ -32,11 +32,9 @@ public class User
 
     private int loadID()
     {
-        String[] emailList = new String[1];
-        emailList[0] = email;
 
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.USERS_TABLE, null, "email", emailList,
+                DatabaseManager.USERS_TABLE, null, "email='" + email + "'", null,
                 null, null, "DESC");
 
         if (cursor != null)
@@ -48,11 +46,9 @@ public class User
 
     private void loadExpenses()
     {
-        String[] idList = new String[1];
-        idList[0] = String.valueOf(id);
 
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.EXPENSES_TABLE, null, "id", idList,
+                DatabaseManager.EXPENSES_TABLE, null, "id=" + id, null,
                 null, null, "DESC");
 
         if (cursor != null)
