@@ -92,7 +92,7 @@
         android:layout_below="@id/money_card"
         >
 
-        <CheckBox
+        <RadioButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Expense"
@@ -101,9 +101,10 @@
             android:layout_marginLeft="20dp"
             android:layout_alignParentLeft="true">
 
-        </CheckBox>
+        </RadioButton>
 
-        <CheckBox
+
+        <RadioButton
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Income"
@@ -112,7 +113,7 @@
             android:layout_marginLeft="20dp"
             android:layout_alignParentLeft="true">
 
-        </CheckBox>
+        </RadioButton>
 
     </LinearLayout>
 
