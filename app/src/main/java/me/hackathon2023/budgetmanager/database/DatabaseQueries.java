@@ -4,6 +4,8 @@ import android.database.Cursor;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 
 import me.hackathon2023.budgetmanager.BudgetManager;
 
@@ -18,13 +20,21 @@ public class DatabaseQueries
         );
     }
 
-    public static void addExpense(String email, String type, String name, float total)
+    public static void addExpense(String email, String type, float total)
     {
+        // format into a date to be put into database
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        String date = sdf.format(timestamp);
+
         BudgetManager.getDatabaseManager().getWriting().execSQL(
                 "INSERT INTO " + DatabaseManager.EXPENSES_TABLE +
-                        " (email, type, name, total) " +
-                        "VALUES('" + email + "','" + type + "','" + name + "'," + total + ")"
+                        " (email, type, date, total) " +
+                        "VALUES('" + email + "','" + type + "','" + date + "'," + total + ")"
         );
+
+        // this needs to be called after as we just calculated the date
+        BudgetManager.getLoggedInUser().addExpense(type, date, total);
     }
 
     // used for checking when loggin in

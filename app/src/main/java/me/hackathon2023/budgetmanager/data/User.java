@@ -45,9 +45,9 @@ public class User
         cursor.close();
     }
 
-    public void addExpense(String type, String name, float total)
+    public void addExpense(String type, String date, float total)
     {
-        expenses.add(new Expenses(type, name, total));
+        expenses.add(new Expenses(type, date, total));
     }
 
     private void loadExpenses()
@@ -63,11 +63,11 @@ public class User
             while (cursor.moveToNext())
             {
                 String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
-                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
                 float total = cursor.getFloat(cursor.getColumnIndexOrThrow("total"));
 
                 // add into their expenses cache
-                expenses.add(new Expenses(type, name, total));
+                expenses.add(new Expenses(type, date, total));
             }
         }
     }
