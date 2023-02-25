@@ -19,4 +19,7 @@ public class BudgetManager extends AppCompatActivity
     {
         return databaseManager;
     }
+
+
+
 }

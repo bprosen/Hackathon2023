@@ -14,8 +14,8 @@ import android.widget.LinearLayout;
 public class LoginScreen extends AppCompatActivity {
 
     private Button GetStarted;
-
-    private Button Signup;
+    private static Button Signup;
+    private Button Cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,23 +26,33 @@ public class LoginScreen extends AppCompatActivity {
 
         GetStarted.setOnClickListener(new View.OnClickListener() {
 
-                                      @Override
-                                      public void onClick(View v) {
-                                          setContentView(R.layout.activity_login);
-                                          Signup=findViewById(R.id.SignupButton);
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.activity_login);
+                Signup = findViewById(R.id.SignupButton);
 
-                                          Signup.setOnClickListener(new View.OnClickListener() {
-                                              @Override
-                                              public void onClick(View view) {
-                                                  setContentView(R.layout.activity_register);
-                                              }
-                                          });
-                                      }
+                Signup.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setContentView(R.layout.activity_register);
+                        Cancel = findViewById(R.id.cancel_button);
 
-                                  });
+                        Cancel.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                setContentView(R.layout.activity_login);
+                                Reset();
+                            }
+
+                        });
 
 
+                    }
+                });
 
+            }
+
+        });
 
 
 //        new Handler().postDelayed(new Runnable() {
@@ -50,12 +60,40 @@ public class LoginScreen extends AppCompatActivity {
 //            public void run() {
 //                Intent i = new Intent(LoginScreen.this, BudgetManager.class);
 //                        startActivity(i);
-                      //  setContentView(R.layout.activity_login);
+        //  setContentView(R.layout.activity_login);
 //
 //                finish();
 //            }
 //        }, 3000);
 
     }
+
+    private void Reset(){
+
+        Signup = findViewById(R.id.SignupButton);
+
+        Signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.activity_register);
+                Cancel = findViewById(R.id.cancel_button);
+
+                Cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        setContentView(R.layout.activity_login);
+                        Reset();
+                    }
+
+                });
+
+
+            }
+        });
+
+    }
+
+
+
 }
 
