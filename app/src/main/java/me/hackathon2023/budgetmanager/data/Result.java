@@ -1,4 +1,4 @@
-package com.example.myapplication.data;
+package me.hackathon2023.budgetmanager.data;
 
 /**
  * A generic class that holds a result success w/ data or an error exception.

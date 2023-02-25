@@ -1,11 +1,11 @@
-package com.example.myapplication.ui.login;
+package me.hackathon2023.budgetmanager.login;
 
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.annotation.NonNull;
 
-import com.example.myapplication.data.LoginDataSource;
-import com.example.myapplication.data.LoginRepository;
+import me.hackathon2023.budgetmanager.data.LoginDataSource;
+import me.hackathon2023.budgetmanager.data.LoginRepository;
 
 /**
  * ViewModel provider factory to instantiate LoginViewModel.

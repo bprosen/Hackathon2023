@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.login;
+package me.hackathon2023.budgetmanager.login;
 
 import android.app.Activity;
 
@@ -23,8 +23,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.myapplication.R;
-import com.example.myapplication.ui.login.LoginViewModel;
-import com.example.myapplication.ui.login.LoginViewModelFactory;
 import com.example.myapplication.databinding.ActivityLoginBinding;
 
 public class LoginActivity extends AppCompatActivity {

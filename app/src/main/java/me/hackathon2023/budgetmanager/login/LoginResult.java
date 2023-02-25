@@ -1,4 +1,4 @@
-package com.example.myapplication.ui.login;
+package me.hackathon2023.budgetmanager.login;
 
 import androidx.annotation.Nullable;
 

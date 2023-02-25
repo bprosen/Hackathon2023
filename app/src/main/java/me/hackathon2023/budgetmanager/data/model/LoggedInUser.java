@@ -1,4 +1,4 @@
-package com.example.myapplication.data.model;
+package me.hackathon2023.budgetmanager.data.model;
 
 /**
  * Data class that captures user information for logged in users retrieved from LoginRepository

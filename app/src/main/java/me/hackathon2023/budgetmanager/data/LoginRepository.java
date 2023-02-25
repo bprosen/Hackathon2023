@@ -1,6 +1,6 @@
-package com.example.myapplication.data;
+package me.hackathon2023.budgetmanager.data;
 
-import com.example.myapplication.data.model.LoggedInUser;
+import me.hackathon2023.budgetmanager.data.model.LoggedInUser;
 
 /**
  * Class that requests authentication and user information from the remote data source and
