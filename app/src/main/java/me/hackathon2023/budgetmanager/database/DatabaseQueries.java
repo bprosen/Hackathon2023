@@ -18,6 +18,15 @@ public class DatabaseQueries
         );
     }
 
+    public static void addExpense(String email, String type, String name, float total)
+    {
+        BudgetManager.getDatabaseManager().getWriting().execSQL(
+                "INSERT INTO " + DatabaseManager.EXPENSES_TABLE +
+                        " (email, type, name, total) " +
+                        "VALUES('" + email + "','" + type + "','" + name + "'," + total + ")"
+        );
+    }
+
     // used for checking when loggin in
     public static boolean correctPassword(String email, String enteredPassword)
     {

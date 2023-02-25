@@ -45,6 +45,11 @@ public class User
         cursor.close();
     }
 
+    public void addExpense(String type, String name, float total)
+    {
+        expenses.add(new Expenses(type, name, total));
+    }
+
     private void loadExpenses()
     {
 
