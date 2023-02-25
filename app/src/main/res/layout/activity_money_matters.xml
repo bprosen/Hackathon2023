@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f2f2f2"
+    tools:context=".MoneyMatters">
+
+    <RelativeLayout
+        android:id="@+id/money_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:background="@color/teal_200">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:text="Money Matters"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textAlignment="center"
+            />
+    </RelativeLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/money_card"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_below="@id/money_toolbar"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="30dp">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="center">
+
+            <EditText
+                android:inputType="number"
+                android:id="@+id/money_amount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Amount">
+
+            </EditText>
+            <EditText
+
+                android:id="@+id/txn_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/money_amount"
+                android:hint="Transaction Type"
+                >
+
+            </EditText>
+
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/add_button"
+        android:layout_margin="16dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:backgroundTint="@color/teal_700"
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add"
+            android:textSize="30sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:layout_gravity="center"/>
+
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@id/money_card"
+        >
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Expense"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true">
+
+        </CheckBox>
+
+        <CheckBox
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="Income"
+            android:textStyle="bold"
+            android:layout_weight="1"
+            android:layout_marginLeft="20dp"
+            android:layout_alignParentLeft="true">
+
+        </CheckBox>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
