@@ -6,9 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Button;
-import android.widget.LinearLayout;
-
-import com.example.myapplication.R;
 
 public class LoginScreen extends AppCompatActivity {
 
@@ -16,14 +13,12 @@ public class LoginScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Intent i = new Intent(LoginScreen.this, BudgetManager.class);
-                        startActivity(i);
 
-                finish();
-            }
+        new Handler().postDelayed(() -> {
+            Intent i = new Intent(LoginScreen.this, BudgetManager.class);
+                    startActivity(i);
+
+            finish();
         }, 3000);
 
     }
