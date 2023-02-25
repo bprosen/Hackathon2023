@@ -7,6 +7,7 @@ import java.util.List;
 
 import me.hackathon2023.budgetmanager.BudgetManager;
 import me.hackathon2023.budgetmanager.Utils;
+import me.hackathon2023.budgetmanager.database.DatabaseManager;
 import me.hackathon2023.budgetmanager.database.Query;
 
 public class User
@@ -15,9 +16,11 @@ public class User
     private String name;
     private String email;
     private String password;
-    private int id;
+    private int id = -1;
 
     private List<Expenses> expenses = new ArrayList<>();
+
+    public static final int MIN_PASSWORD_LENGTH = 8;
 
     public User(String userOrEmail, String password)
     {
@@ -37,9 +40,9 @@ public class User
         ResultSet result = null;
 
         if (username != null)
-            result = new Query().build("SELECT id FROM users WHERE username='" + username + "'").get();
+            result = new Query().build("SELECT id FROM " + DatabaseManager.USERS_TABLE + " WHERE username='" + username + "'").get();
         else if (email != null)
-            result = new Query().build("SELECT id FROM users WHERE email='" + email + "'").get();
+            result = new Query().build("SELECT id FROM " + DatabaseManager.USERS_TABLE + " WHERE email='" + email + "'").get();
 
         if (result != null)
         {
@@ -57,7 +60,7 @@ public class User
 
     private void loadExpenses()
     {
-        ResultSet result = new Query().build("SELECT * FROM expenses WHERE id=" + id).get();
+        ResultSet result = new Query().build("SELECT * FROM " + DatabaseManager.EXPENSES_TABLE + " WHERE id=" + id).get();
 
         if (result != null)
         {

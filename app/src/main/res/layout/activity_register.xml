@@ -34,7 +34,7 @@
         android:drawablePadding="20dp"
         android:hint="Username"
         android:padding="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/purple"
         android:textColorHint="@color/black" />
 
 
@@ -48,7 +48,7 @@
         android:drawablePadding="20dp"
         android:hint="Email"
         android:padding="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/purple"
         android:textColorHint="@color/black" />
 
 
@@ -64,8 +64,9 @@
         android:background="#d3d3d3"
         android:drawablePadding="20dp"
         android:hint="Password"
+        android:inputType="textPassword"
         android:padding="20dp"
-        android:textColor="@color/white"
+        android:textColor="@color/purple"
         android:textColorHint="@color/black" />
 
     <EditText
@@ -73,13 +74,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/userPassword"
-        android:layout_margin="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
         android:background="#d3d3d3"
         android:drawablePadding="20dp"
         android:hint="Confirm Password"
+        android:inputType="textPassword"
         android:padding="20dp"
-        android:textColor="@color/white"
-        android:textColorHint="@color/black"/>
+        android:textColor="@color/purple"
+        android:textColorHint="@color/black" />
 
     <Button
         android:id="@+id/button"
