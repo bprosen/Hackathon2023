@@ -13,22 +13,38 @@ import android.widget.LinearLayout;
 
 public class LoginScreen extends AppCompatActivity {
 
-    private Button pushMe;
+    private Button GetStarted;
+
+    private Button Signup;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_screen);
 
-        pushMe=findViewById(R.id.button6);
+        GetStarted=findViewById(R.id.button6);
 
-        pushMe.setOnClickListener(new View.OnClickListener() {
+        GetStarted.setOnClickListener(new View.OnClickListener() {
 
                                       @Override
                                       public void onClick(View v) {
                                           setContentView(R.layout.activity_login);
+                                          Signup=findViewById(R.id.SignupButton);
+
+                                          Signup.setOnClickListener(new View.OnClickListener() {
+                                              @Override
+                                              public void onClick(View view) {
+                                                  setContentView(R.layout.activity_register);
+                                              }
+                                          });
                                       }
 
                                   });
+
+
+
+
+
 //        new Handler().postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
