@@ -17,6 +17,10 @@ public class User
     private String email;
     private String password;
 
+    private float income;
+    private float expense;
+    private float balance;
+
     private List<Expenses> expenses = new ArrayList<>();
 
     public static final int MIN_PASSWORD_LENGTH = 8;
@@ -47,6 +51,13 @@ public class User
 
     public void addExpense(String type, String date, float total)
     {
+        // add to appropriate balances
+        if (total < 0.0)
+            expense += total;
+        else
+            income += total;
+
+        balance += total;
         expenses.add(new Expenses(type, date, total));
     }
 
@@ -66,9 +77,31 @@ public class User
                 String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
                 float total = cursor.getFloat(cursor.getColumnIndexOrThrow("total"));
 
+                if (total < 0.0)
+                    expense += total;
+                else
+                    income += total;
+
+                balance += total;
+
                 // add into their expenses cache
-                expenses.add(new Expenses(type, date, total));
+                addExpense(type, date, total);
             }
         }
+    }
+
+    public float getIncome()
+    {
+        return income;
+    }
+
+    public float getExpense()
+    {
+        return expense;
+    }
+
+    public float getBalance()
+    {
+        return balance;
     }
 }
