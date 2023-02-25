@@ -4,15 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-
-import me.hackathon2023.budgetmanager.BudgetManager;
-import me.hackathon2023.budgetmanager.Utils;
 import me.hackathon2023.budgetmanager.database.DatabaseManager;
 import me.hackathon2023.budgetmanager.database.Query;
 
 public class User
 {
-    private String username;
     private String name;
     private String email;
     private String password;
@@ -22,13 +18,9 @@ public class User
 
     public static final int MIN_PASSWORD_LENGTH = 8;
 
-    public User(String userOrEmail, String password)
+    public User(String email, String password)
     {
-        if (Utils.isEmail(userOrEmail))
-            email = userOrEmail;
-        else
-            name = userOrEmail;
-
+        this.email = email;
         this.password = password;
         this.id = loadID();
 
@@ -37,12 +29,7 @@ public class User
 
     private int loadID()
     {
-        ResultSet result = null;
-
-        if (username != null)
-            result = new Query().build("SELECT id FROM " + DatabaseManager.USERS_TABLE + " WHERE username='" + username + "'").get();
-        else if (email != null)
-            result = new Query().build("SELECT id FROM " + DatabaseManager.USERS_TABLE + " WHERE email='" + email + "'").get();
+        ResultSet result = new Query().build("SELECT id FROM " + DatabaseManager.USERS_TABLE + " WHERE email='" + email + "'").get();
 
         if (result != null)
         {

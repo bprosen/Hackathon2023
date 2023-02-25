@@ -26,7 +26,6 @@ public class DatabaseManager
         new Query().build("CREATE TABLE " + USERS_TABLE + " IF NOT EXISTS (" +
                 "id INTEGER AUTOINCREMENT, " +
                 "name VARCHAR(100) DEFAULT NULL, " +
-                "username VARCHAR(16) DEFAULT NULL, " +
                 "email VARCHAR(50) DEFAULT NULL, " +
                 "password VARCHAR(100) DEFAULT NULL" +
                 ")")
