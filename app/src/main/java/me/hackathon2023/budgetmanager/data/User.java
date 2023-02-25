@@ -23,11 +23,10 @@ public class User
 
     public User(String email, String password)
     {
-        loadName();
-
         this.email = email;
         this.password = password;
 
+        loadName();
         loadExpenses();
     }
 
@@ -37,7 +36,8 @@ public class User
                 DatabaseManager.USERS_TABLE, null, "email='" + email + "'", null,
                 null, null, null);
 
-        name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        if (cursor.getCount() > 0)
+            name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
     }
 
     private void loadExpenses()
