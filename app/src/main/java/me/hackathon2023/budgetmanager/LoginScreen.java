@@ -20,6 +20,8 @@ public class LoginScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // initialize database on login creation
         BudgetManager.setDatabaseManager(this);
         setContentView(R.layout.activity_login_screen);
 
