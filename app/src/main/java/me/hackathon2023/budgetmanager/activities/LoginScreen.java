@@ -252,6 +252,19 @@ public class LoginScreen extends AppCompatActivity {
     //add transcation to database
     private void addToDataBase(){
 
+        EditText amount, type;
+
+        amount = findViewById(R.id.money_amount);
+        type = findViewById(R.id.txn_type);
+
+        float amountEntered = Float.parseFloat(amount.getText().toString());
+        String typeExpense = type.getText().toString();
+
+        System.out.println(amountEntered);
+        System.out.println(typeExpense);
+
+
+
     }
 
     //cancel was pressed
