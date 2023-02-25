@@ -9,9 +9,9 @@ import me.hackathon2023.budgetmanager.BudgetManager;
 
 public class Query
 {
-    String query;
+    private String query;
 
-    Connection connection;
+    private Connection connection;
 
     public Query()
     {
