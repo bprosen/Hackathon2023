@@ -18,6 +18,18 @@ public class DatabaseQueries
         );
     }
 
+    // used for checking when loggin in
+    public static boolean correctPassword(String email, String enteredPassword)
+    {
+        Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
+                DatabaseManager.USERS_TABLE, null, "email", new String[]{email},
+                null, null, "DESC");
+
+        String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+
+        return password.equals(enteredPassword);
+    }
+
     public static boolean emailExists(String email)
     {
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
