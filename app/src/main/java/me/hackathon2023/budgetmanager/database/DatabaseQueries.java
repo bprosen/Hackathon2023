@@ -30,6 +30,7 @@ public class DatabaseQueries
 
         if (cursor.getCount() > 0)
         {
+            cursor.moveToFirst();
             String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
             correct = password.equals(enteredPassword);
         }

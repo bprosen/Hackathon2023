@@ -37,7 +37,12 @@ public class User
                 null, null, null);
 
         if (cursor.getCount() > 0)
+        {
+            cursor.moveToFirst();
             name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+        }
+
+        cursor.close();
     }
 
     private void loadExpenses()
