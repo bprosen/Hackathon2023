@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
 
 import me.hackathon2023.budgetmanager.BudgetManager;
 import me.hackathon2023.budgetmanager.database.DatabaseManager;
@@ -15,7 +16,6 @@ public class User
     private String name;
     private String email;
     private String password;
-    private int id;
 
     private List<Expenses> expenses = new ArrayList<>();
 
@@ -23,10 +23,21 @@ public class User
 
     public User(String email, String password)
     {
+        loadName();
+
         this.email = email;
         this.password = password;
 
         loadExpenses();
+    }
+
+    private void loadName()
+    {
+        Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
+                DatabaseManager.USERS_TABLE, null, "email='" + email + "'", null,
+                null, null, null);
+
+        name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
     }
 
     private void loadExpenses()
@@ -46,7 +57,7 @@ public class User
                 float total = cursor.getFloat(cursor.getColumnIndexOrThrow("total"));
 
                 // add into their expenses cache
-                expenses.add(new Expenses(id, type, name, total));
+                expenses.add(new Expenses(type, name, total));
             }
         }
     }
