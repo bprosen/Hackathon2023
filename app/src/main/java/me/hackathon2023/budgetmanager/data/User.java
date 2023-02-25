@@ -25,31 +25,16 @@ public class User
     {
         this.email = email;
         this.password = password;
-        this.id = loadID();
 
         loadExpenses();
-    }
-
-    private int loadID()
-    {
-
-        Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.USERS_TABLE, null, "email='" + email + "'", null,
-                null, null, null);
-
-        if (cursor != null)
-        {
-            id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
-        }
-        return id;
     }
 
     private void loadExpenses()
     {
 
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.EXPENSES_TABLE, null, "id=" + id, null,
-                null, null, "DESC");
+                DatabaseManager.EXPENSES_TABLE, null, "email='" + email + "'", null,
+                null, null, null);
 
         if (cursor != null)
         {
