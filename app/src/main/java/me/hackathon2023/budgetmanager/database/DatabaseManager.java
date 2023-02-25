@@ -14,12 +14,36 @@ public class DatabaseManager
     public DatabaseManager()
     {
         open();
+        createTables();
+    }
+
+    private void createTables()
+    {
+        // call build queries to make tables for users, and expenses
+        new Query().build("CREATE TABLE users IF NOT EXISTS (" +
+                "id INTEGER AUTOINCREMENT, " +
+                "name VARCHAR(100) DEFAULT NULL, " +
+                "username VARCHAR(16) DEFAULT NULL, " +
+                "email VARCHAR(50) DEFAULT NULL, " +
+                "password VARCHAR(100) DEFAULT NULL" +
+                ")")
+        .run();
+
+        new Query().build("CREATE TABLE expenses IF NOT EXISTS (" +
+                "id INTEGER DEFAULT 0, " +
+                "type VARCHAR(30) DEFAULT NULL, " +
+                "name VARCHAR(30) DEFAULT NULL, " +
+                "total FLOAT DEFAULT 0.0, " +
+                "amount SMALLINT DEFAULT 0" +
+                ")")
+        .run();
     }
 
     private void open()
     {
         try
         {
+            // get from the driver manager
             connection = DriverManager.getConnection(URL);
             Utils.println("Successfully connected to the database");
         }
@@ -34,6 +58,7 @@ public class DatabaseManager
     {
         try
         {
+            // only close if we know it is not closed
             if (!isClosed())
                 connection.close();
         }
@@ -43,6 +68,7 @@ public class DatabaseManager
         }
     }
 
+    // useful for checking for errors/avoiding them
     public boolean isClosed()
     {
         boolean closed = true;
@@ -57,5 +83,10 @@ public class DatabaseManager
         }
 
         return closed;
+    }
+
+    public Connection getConnection()
+    {
+        return connection;
     }
 }
