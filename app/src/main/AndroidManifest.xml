@@ -12,9 +12,12 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
-            android:name="me.hackathon2023.budgetmanager.BudgetManager"
-            android:label="@string/budget_manager"
-            android:exported="true" >
+            android:name=".Login"
+            android:exported="false" />
+        <activity
+            android:name=".BudgetManager"
+            android:exported="true"
+            android:label="@string/budget_manager">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
