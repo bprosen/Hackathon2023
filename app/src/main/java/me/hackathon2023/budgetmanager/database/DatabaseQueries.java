@@ -38,9 +38,9 @@ public class DatabaseQueries
         String[] emailList = new String[1];
         emailList[0] = email;
 
-        Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.USERS_TABLE, null, "email", emailList,
-                null, null, "DESC");
+            Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
+                DatabaseManager.USERS_TABLE, null, "email='" + emailList[0] + "'",
+                null, null, null, null);
 
         return cursor.moveToNext();
     }
