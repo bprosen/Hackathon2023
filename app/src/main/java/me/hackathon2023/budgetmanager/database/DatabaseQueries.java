@@ -21,8 +21,11 @@ public class DatabaseQueries
     // used for checking when loggin in
     public static boolean correctPassword(String email, String enteredPassword)
     {
+        String[] emailList = new String[1];
+        emailList[0] = email;
+
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.USERS_TABLE, null, "email", new String[]{email},
+                DatabaseManager.USERS_TABLE, null, "email", emailList,
                 null, null, "DESC");
 
         String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
@@ -32,8 +35,11 @@ public class DatabaseQueries
 
     public static boolean emailExists(String email)
     {
+        String[] emailList = new String[1];
+        emailList[0] = email;
+
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.USERS_TABLE, null, "email", new String[]{email},
+                DatabaseManager.USERS_TABLE, null, "email", emailList,
                 null, null, "DESC");
 
         return cursor.moveToNext();
