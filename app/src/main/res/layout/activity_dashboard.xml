@@ -142,7 +142,6 @@
 
         </androidx.core.widget.NestedScrollView>
 
-
     <Button
         android:id="@+id/add_button"
         android:layout_width="50dp"
@@ -153,6 +152,8 @@
         android:layout_marginRight="10dp"
         android:backgroundTint="#20262e"
         android:text="+" />
+
+
 
 
 </RelativeLayout>
