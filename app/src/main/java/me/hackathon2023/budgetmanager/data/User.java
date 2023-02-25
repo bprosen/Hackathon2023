@@ -35,7 +35,7 @@ public class User
 
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
                 DatabaseManager.USERS_TABLE, null, "email='" + email + "'", null,
-                null, null, "DESC");
+                null, null, null);
 
         if (cursor != null)
         {

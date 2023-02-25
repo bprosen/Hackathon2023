@@ -24,7 +24,7 @@ public class DatabaseQueries
 
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
                 DatabaseManager.USERS_TABLE, null, "email='" + email + "'", null,
-                null, null, "DESC");
+                null, null, null);
 
         String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
 
@@ -34,10 +34,10 @@ public class DatabaseQueries
     public static boolean emailExists(String email)
     {
 
-            Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.USERS_TABLE, null, "email='" + email + "'",
-                null, null, null, null);
+        Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
+            DatabaseManager.USERS_TABLE, null, "email='" + email + "'",
+            null, null, null, null);
 
-        return cursor.moveToNext();
+        return cursor.isNull(cursor.getColumnIndexOrThrow("name"));
     }
 }
