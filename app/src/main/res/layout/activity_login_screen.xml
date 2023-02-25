@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/background"
     android:layout_gravity="center"
-    tools:context="me.hackathon2023.budgetmanager.LoginScreen">
+    tools:context="me.hackathon2023.budgetmanager.activities.LoginScreen">
 
     <LinearLayout
         android:layout_width="match_parent"

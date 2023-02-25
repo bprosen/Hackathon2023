@@ -1,10 +1,9 @@
-package me.hackathon2023.budgetmanager;
-
-import androidx.appcompat.app.AppCompatActivity;
+package me.hackathon2023.budgetmanager.activities;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
+
+import me.hackathon2023.budgetmanager.activities.Login;
 
 public class Register extends Login {
 

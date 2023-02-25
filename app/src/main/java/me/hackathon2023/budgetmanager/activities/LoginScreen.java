@@ -1,4 +1,4 @@
-package me.hackathon2023.budgetmanager;
+package me.hackathon2023.budgetmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,9 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import me.hackathon2023.budgetmanager.BudgetManager;
+import me.hackathon2023.budgetmanager.R;
+import me.hackathon2023.budgetmanager.Utils;
 import me.hackathon2023.budgetmanager.data.User;
 import me.hackathon2023.budgetmanager.database.DatabaseQueries;
 

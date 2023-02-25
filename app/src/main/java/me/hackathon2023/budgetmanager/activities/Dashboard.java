@@ -1,8 +1,10 @@
-package me.hackathon2023.budgetmanager;
+package me.hackathon2023.budgetmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import me.hackathon2023.budgetmanager.R;
 
 public class Dashboard extends AppCompatActivity {
 
