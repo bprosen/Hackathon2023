@@ -40,6 +40,10 @@ public class LoginScreen extends AppCompatActivity {
     private Button AddTxn;
 
 
+    Button Add;
+    Button CancelTransaction;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -51,7 +55,7 @@ public class LoginScreen extends AppCompatActivity {
         BudgetManager.setDatabaseManager(this);
         setContentView(R.layout.activity_login_screen);
 
-        GetStarted=findViewById(R.id.button6);
+        GetStarted = findViewById(R.id.button6);
 
         GetStarted.setOnClickListener(new View.OnClickListener() {
 
@@ -76,25 +80,25 @@ public class LoginScreen extends AppCompatActivity {
                         String emailAddress = newEmailLogin.getText().toString();
                         String password = newPasswordLogin.getText().toString();
 
-                       if (!Utils.isEmail(emailAddress)){
+                        if (!Utils.isEmail(emailAddress)) {
                             newEmailLogin.getText().clear();
-                            Toast.makeText(getApplicationContext(),"Please enter a valid email address", Toast.LENGTH_SHORT).show();
-                        } else if(!DatabaseQueries.emailExists(emailAddress)) {
-                           newEmailLogin.getText().clear();
-                           Toast.makeText(getApplicationContext(),"User not found!", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(), "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                        } else if (!DatabaseQueries.emailExists(emailAddress)) {
+                            newEmailLogin.getText().clear();
+                            Toast.makeText(getApplicationContext(), "User not found!", Toast.LENGTH_SHORT).show();
 
-                       } else if(!DatabaseQueries.correctPassword(emailAddress, password)){
-                           newEmailLogin.getText().clear();
-                           newPasswordLogin.getText().clear();
-                           Toast.makeText(getApplicationContext(),"Email and Password combination is incorrect.", Toast.LENGTH_SHORT).show();
+                        } else if (!DatabaseQueries.correctPassword(emailAddress, password)) {
+                            newEmailLogin.getText().clear();
+                            newPasswordLogin.getText().clear();
+                            Toast.makeText(getApplicationContext(), "Email and Password combination is incorrect.", Toast.LENGTH_SHORT).show();
 
-                       } else {
+                        } else {
 
-                           Toast.makeText(getApplicationContext(),"Login Successful", Toast.LENGTH_SHORT).show();
-                           //setContentView(R.layout.activity_dashboard);
-                           loginDone();
+                            Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
+                            //setContentView(R.layout.activity_dashboard);
+                            loginDone();
 
-                       }
+                        }
 
                     }
                 });
@@ -134,26 +138,26 @@ public class LoginScreen extends AppCompatActivity {
                                 String password = newPassword.getText().toString();
                                 String confirmPass = confirmPassword.getText().toString();
 
-                               if(password.length() < User.MIN_PASSWORD_LENGTH){
-                                   newPassword.getText().clear();
-                                   confirmPassword.getText().clear();
-                                   Toast.makeText(getApplicationContext(),"Please enter atleast 8 digits for your password", Toast.LENGTH_SHORT).show();
+                                if (password.length() < User.MIN_PASSWORD_LENGTH) {
+                                    newPassword.getText().clear();
+                                    confirmPassword.getText().clear();
+                                    Toast.makeText(getApplicationContext(), "Please enter atleast 8 digits for your password", Toast.LENGTH_SHORT).show();
 
-                               } else if (!Utils.isEmail(emailAddress)){
-                                   newEmail.getText().clear();
-                                   Toast.makeText(getApplicationContext(),"Please enter a valid email address", Toast.LENGTH_SHORT).show();
-                               } else if (!password.equals(confirmPass)) {
-                                   Toast.makeText(getApplicationContext(),"Passwords do not match!", Toast.LENGTH_SHORT).show();
-                              } else if (DatabaseQueries.emailExists(emailAddress)){
-                                  newEmail.getText().clear();
-                                 Toast.makeText(getApplicationContext(),"Email already exists, Please try Logging in!", Toast.LENGTH_SHORT).show();
-                               } else {
-                                   Toast.makeText(getApplicationContext(),"Account Succesfully created", Toast.LENGTH_SHORT).show();
-                                    DatabaseQueries.registerUser(userName,emailAddress,password);
-                                    BudgetManager.setUser(new User(emailAddress,password));
+                                } else if (!Utils.isEmail(emailAddress)) {
+                                    newEmail.getText().clear();
+                                    Toast.makeText(getApplicationContext(), "Please enter a valid email address", Toast.LENGTH_SHORT).show();
+                                } else if (!password.equals(confirmPass)) {
+                                    Toast.makeText(getApplicationContext(), "Passwords do not match!", Toast.LENGTH_SHORT).show();
+                                } else if (DatabaseQueries.emailExists(emailAddress)) {
+                                    newEmail.getText().clear();
+                                    Toast.makeText(getApplicationContext(), "Email already exists, Please try Logging in!", Toast.LENGTH_SHORT).show();
+                                } else {
+                                    Toast.makeText(getApplicationContext(), "Account Succesfully created", Toast.LENGTH_SHORT).show();
+                                    DatabaseQueries.registerUser(userName, emailAddress, password);
+                                    BudgetManager.setUser(new User(emailAddress, password));
                                     setContentView(R.layout.activity_dashboard);
                                     loginDone();
-                               }
+                                }
 
                             }
                         });
@@ -161,7 +165,6 @@ public class LoginScreen extends AppCompatActivity {
                 });
 
             }
-
 
 
         });
@@ -183,7 +186,7 @@ public class LoginScreen extends AppCompatActivity {
     //----------------------------------------------------------------------------
     // Reset the buttons in case the user presses the "Cancel" button
     //----------------------------------------------------------------------------
-    private void Reset(){
+    private void Reset() {
 
         Signup = findViewById(R.id.SignupButton);
 
@@ -211,26 +214,50 @@ public class LoginScreen extends AppCompatActivity {
     //----------------------------------------------------------------------------
     //Login Done: Enter the Dashboard
     //----------------------------------------------------------------------------
-    private void loginDone(){
+    private void loginDone() {
         setContentView(R.layout.activity_dashboard);
         AddTxn = findViewById(R.id.add_button);
 
         AddTxn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 setContentView(R.layout.activity_money_matters);
+                processTransaction();
             }
         });
 
-        ProcessTransaction();
+    }
+
+    private void processTransaction() {
+
+        Add = findViewById(R.id.AddButton);
+        CancelTransaction = findViewById(R.id.CancelButton);
+        Add.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                addToDataBase();
+            }
+        });
+
+        CancelTransaction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                goBackToDashBoard();
+            }
+        });
 
     }
 
-    private void ProcessTransaction(){
+    //add transcation to database
+    private void addToDataBase(){
 
     }
 
-
+    //cancel was pressed
+    private void goBackToDashBoard(){
+        loginDone();
+    }
 
 
 }
