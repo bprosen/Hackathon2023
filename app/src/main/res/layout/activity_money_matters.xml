@@ -57,6 +57,17 @@
                 >
 
             </EditText>
+            <EditText
+
+                android:id="@+id/txn_date"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txn_type"
+                android:hint="Date"
+                android:inputType="date"
+                >
+
+            </EditText>
 
         </LinearLayout>
     </androidx.cardview.widget.CardView>
