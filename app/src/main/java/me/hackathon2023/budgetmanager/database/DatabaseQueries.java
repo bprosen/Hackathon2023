@@ -22,13 +22,19 @@ public class DatabaseQueries
     public static boolean correctPassword(String email, String enteredPassword)
     {
 
+        boolean correct = false;
+
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
                 DatabaseManager.USERS_TABLE, null, "email='" + email + "'", null,
                 null, null, null);
 
-        String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+        if (cursor.getCount() > 0)
+        {
+            String password = cursor.getString(cursor.getColumnIndexOrThrow("password"));
+            correct = password.equals(enteredPassword);
+        }
 
-        return password.equals(enteredPassword);
+        return correct;
     }
 
     public static boolean emailExists(String email)
