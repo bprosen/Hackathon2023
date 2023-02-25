@@ -39,8 +39,7 @@ public class DatabaseManager extends SQLiteOpenHelper
                 "email VARCHAR(50) DEFAULT 0, " +
                 "type VARCHAR(30) DEFAULT NULL, " +
                 "name VARCHAR(30) DEFAULT NULL, " +
-                "total FLOAT DEFAULT 0.0, " +
-                "amount SMALLINT DEFAULT 0" +
+                "total FLOAT DEFAULT 0.0" +
                 ")");
     }
 

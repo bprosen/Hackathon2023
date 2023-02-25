@@ -44,10 +44,9 @@ public class User
                 String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
                 String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
                 float total = cursor.getFloat(cursor.getColumnIndexOrThrow("total"));
-                int amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
 
                 // add into their expenses cache
-                expenses.add(new Expenses(id, type, name, total, amount));
+                expenses.add(new Expenses(id, type, name, total));
             }
         }
     }
