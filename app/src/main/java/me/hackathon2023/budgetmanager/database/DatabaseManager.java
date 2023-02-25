@@ -22,7 +22,7 @@ public class DatabaseManager extends SQLiteOpenHelper
 
     public DatabaseManager(ContextWrapper contextWrapper)
     {
-        super(contextWrapper, DB_NAME, null, 2);
+        super(contextWrapper, DB_NAME, null, 3);
         onCreate(super.getWritableDatabase());
     }
 
@@ -38,7 +38,7 @@ public class DatabaseManager extends SQLiteOpenHelper
         database.execSQL("CREATE TABLE IF NOT EXISTS " + EXPENSES_TABLE + " (" +
                 "email VARCHAR(50) DEFAULT 0, " +
                 "type VARCHAR(30) DEFAULT NULL, " +
-                "name VARCHAR(30) DEFAULT NULL, " +
+                "date TEXT DEFAULT NULL, " +
                 "total FLOAT DEFAULT 0.0" +
                 ")");
     }
