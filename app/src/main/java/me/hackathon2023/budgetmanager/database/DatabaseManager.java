@@ -22,7 +22,7 @@ public class DatabaseManager extends SQLiteOpenHelper
 
     public DatabaseManager(ContextWrapper contextWrapper)
     {
-        super(contextWrapper, DB_NAME, null, 1);
+        super(contextWrapper, DB_NAME, null, 2);
         onCreate(super.getWritableDatabase());
     }
 
