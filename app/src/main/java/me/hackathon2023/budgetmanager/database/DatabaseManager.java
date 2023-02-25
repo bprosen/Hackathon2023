@@ -11,6 +11,9 @@ public class DatabaseManager
     private Connection connection;
     private final String URL = "jdbc:sqlite:C:/sqlite/budgetmanager.db";
 
+    public static final String USERS_TABLE = "users";
+    public static final String EXPENSES_TABLE = "expenses";
+
     public DatabaseManager()
     {
         open();
@@ -20,7 +23,7 @@ public class DatabaseManager
     private void createTables()
     {
         // call build queries to make tables for users, and expenses
-        new Query().build("CREATE TABLE users IF NOT EXISTS (" +
+        new Query().build("CREATE TABLE " + USERS_TABLE + " IF NOT EXISTS (" +
                 "id INTEGER AUTOINCREMENT, " +
                 "name VARCHAR(100) DEFAULT NULL, " +
                 "username VARCHAR(16) DEFAULT NULL, " +
@@ -29,7 +32,7 @@ public class DatabaseManager
                 ")")
         .run();
 
-        new Query().build("CREATE TABLE expenses IF NOT EXISTS (" +
+        new Query().build("CREATE TABLE " + EXPENSES_TABLE + " IF NOT EXISTS (" +
                 "id INTEGER DEFAULT 0, " +
                 "type VARCHAR(30) DEFAULT NULL, " +
                 "name VARCHAR(30) DEFAULT NULL, " +
