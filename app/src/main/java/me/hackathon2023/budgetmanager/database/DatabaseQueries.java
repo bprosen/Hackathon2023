@@ -38,6 +38,6 @@ public class DatabaseQueries
             DatabaseManager.USERS_TABLE, null, "email='" + email + "'",
             null, null, null, null);
 
-        return cursor.getColumnIndexOrThrow("name") != -1;
+        return cursor.getColumnIndexOrThrow("name") == -1;
     }
 }
