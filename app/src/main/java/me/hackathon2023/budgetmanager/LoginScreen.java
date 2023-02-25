@@ -20,6 +20,7 @@ public class LoginScreen extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        BudgetManager.setDatabaseManager(this);
         setContentView(R.layout.activity_login_screen);
 
         GetStarted=findViewById(R.id.button6);

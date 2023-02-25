@@ -1,94 +1,69 @@
 package me.hackathon2023.budgetmanager.database;
 
+import android.content.ContextWrapper;
+import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
+
+import java.io.File;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
+import me.hackathon2023.budgetmanager.BudgetManager;
 import me.hackathon2023.budgetmanager.Utils;
 
-public class DatabaseManager
+public class DatabaseManager extends SQLiteOpenHelper
 {
-    private Connection connection;
-    private final String URL = "jdbc:sqlite:C:/sqlite/budgetmanager.db";
+    public static final String DB_NAME = "database.db";
 
     public static final String USERS_TABLE = "users";
     public static final String EXPENSES_TABLE = "expenses";
 
-    public DatabaseManager()
+    public DatabaseManager(ContextWrapper contextWrapper)
     {
-        open();
-        createTables();
+        super(contextWrapper, DB_NAME, null, 1);
+        onCreate(super.getWritableDatabase());
     }
 
-    private void createTables()
+    private void createTables(SQLiteDatabase database)
     {
         // call build queries to make tables for users, and expenses
-        new Query().build("CREATE TABLE " + USERS_TABLE + " IF NOT EXISTS (" +
-                "id INTEGER AUTOINCREMENT, " +
+        database.execSQL("CREATE TABLE IF NOT EXISTS " + USERS_TABLE + " (" +
                 "name VARCHAR(100) DEFAULT NULL, " +
                 "email VARCHAR(50) DEFAULT NULL, " +
                 "password VARCHAR(100) DEFAULT NULL" +
-                ")")
-        .run();
+                ")");
 
-        new Query().build("CREATE TABLE " + EXPENSES_TABLE + " IF NOT EXISTS (" +
-                "id INTEGER DEFAULT 0, " +
+        database.execSQL("CREATE TABLE IF NOT EXISTS " + EXPENSES_TABLE + " (" +
+                "email VARCHAR(50) DEFAULT 0, " +
                 "type VARCHAR(30) DEFAULT NULL, " +
                 "name VARCHAR(30) DEFAULT NULL, " +
                 "total FLOAT DEFAULT 0.0, " +
                 "amount SMALLINT DEFAULT 0" +
-                ")")
-        .run();
-    }
-
-    private void open()
-    {
-        try
-        {
-            // get from the driver manager
-            connection = DriverManager.getConnection(URL);
-            Utils.println("Successfully connected to the database");
-        }
-        catch (SQLException exception)
-        {
-            Utils.println("Something went wrong when connecting to the database...");
-            exception.printStackTrace();
-        }
+                ")");
     }
 
     public void close()
     {
-        try
-        {
-            // only close if we know it is not closed
-            if (!isClosed())
-                connection.close();
-        }
-        catch (SQLException exception)
-        {
-            exception.printStackTrace();
-        }
+        // only close if we know it is not closed
+        super.close();
     }
 
-    // useful for checking for errors/avoiding them
-    public boolean isClosed()
-    {
-        boolean closed = true;
-
-        try
-        {
-            closed = connection.isClosed();
-        }
-        catch (SQLException exception)
-        {
-            exception.printStackTrace();
-        }
-
-        return closed;
+    @Override
+    public void onCreate(SQLiteDatabase sqLiteDatabase) {
+        createTables(sqLiteDatabase);
+        Utils.println("SQLite Connection has been established");
     }
 
-    public Connection getConnection()
+    @Override
+    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
+
+    }
+
+    public SQLiteDatabase getReading() { return getReadableDatabase(); }
+    public SQLiteDatabase getWriting()
     {
-        return connection;
+        return getWritableDatabase();
     }
 }

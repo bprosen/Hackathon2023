@@ -1,18 +1,21 @@
 package me.hackathon2023.budgetmanager.data;
 
+import android.database.Cursor;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+
+import me.hackathon2023.budgetmanager.BudgetManager;
 import me.hackathon2023.budgetmanager.database.DatabaseManager;
-import me.hackathon2023.budgetmanager.database.Query;
 
 public class User
 {
     private String name;
     private String email;
     private String password;
-    private int id = -1;
+    private int id;
 
     private List<Expenses> expenses = new ArrayList<>();
 
@@ -29,45 +32,35 @@ public class User
 
     private int loadID()
     {
-        ResultSet result = new Query().build("SELECT id FROM " + DatabaseManager.USERS_TABLE + " WHERE email='" + email + "'").get();
+        Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
+                DatabaseManager.USERS_TABLE, null, "email", new String[]{email},
+                null, null, "DESC");
 
-        if (result != null)
+        if (cursor != null)
         {
-            try
-            {
-                id = result.getInt("id");
-            }
-            catch (SQLException exception)
-            {
-                exception.printStackTrace();
-            }
+            id = cursor.getInt(cursor.getColumnIndexOrThrow("id"));
         }
         return id;
     }
 
     private void loadExpenses()
     {
-        ResultSet result = new Query().build("SELECT * FROM " + DatabaseManager.EXPENSES_TABLE + " WHERE id=" + id).get();
+        Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
+                DatabaseManager.EXPENSES_TABLE, null, "id", new String[]{String.valueOf(id)},
+                null, null, "DESC");
 
-        if (result != null)
+        if (cursor != null)
         {
-            try
+            // keep going until end of results
+            while (cursor.moveToNext())
             {
-                // keep going until end of results
-                while (result.next())
-                {
-                    String type = result.getString("type");
-                    String name = result.getString("name");
-                    float total = result.getFloat("total");
-                    int amount = result.getInt("amount");
+                String type = cursor.getString(cursor.getColumnIndexOrThrow("type"));
+                String name = cursor.getString(cursor.getColumnIndexOrThrow("name"));
+                float total = cursor.getFloat(cursor.getColumnIndexOrThrow("total"));
+                int amount = cursor.getInt(cursor.getColumnIndexOrThrow("amount"));
 
-                    // add into their expenses cache
-                    expenses.add(new Expenses(id, type, name, total, amount));
-                }
-            }
-            catch (SQLException exception)
-            {
-                exception.printStackTrace();
+                // add into their expenses cache
+                expenses.add(new Expenses(id, type, name, total, amount));
             }
         }
     }
