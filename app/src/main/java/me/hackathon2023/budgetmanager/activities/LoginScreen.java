@@ -152,6 +152,7 @@ public class LoginScreen extends AppCompatActivity {
                                     DatabaseQueries.registerUser(userName,emailAddress,password);
                                     BudgetManager.setUser(new User(emailAddress,password));
                                     setContentView(R.layout.activity_dashboard);
+                                    loginDone();
                                }
 
                             }
