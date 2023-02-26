@@ -34,7 +34,7 @@ public class DatabaseQueries
         );
 
         // this needs to be called after as we just calculated the date
-        BudgetManager.getLoggedInUser().addExpense(type, date, total);
+        BudgetManager.getLoggedInUser().addTransaction(type, date, total);
     }
 
     // used for checking when loggin in
