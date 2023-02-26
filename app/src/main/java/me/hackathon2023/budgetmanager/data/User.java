@@ -74,12 +74,12 @@ public class User
                 String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
                 float total = cursor.getFloat(cursor.getColumnIndexOrThrow("total"));
 
-                if (total < 0.0)
-                    expense += total;
-                else
-                    income += total;
-
-                balance += total;
+//                if (total < 0.0)
+//                    expense += total;
+//                else
+//                    income += total;
+//
+//                balance += total;
 
                 // add into their expenses cache
                 addTransaction(type, date, total);
@@ -100,5 +100,9 @@ public class User
     public float getBalance()
     {
         return balance;
+    }
+
+    public String getEmail(){
+        return email;
     }
 }

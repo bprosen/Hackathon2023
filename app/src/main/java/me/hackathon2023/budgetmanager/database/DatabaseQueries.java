@@ -20,7 +20,7 @@ public class DatabaseQueries
         );
     }
 
-    public static void addExpense(String email, String type, float total)
+    public static void addTransaction(String email, String type, float total)
     {
         // format into a date to be put into database
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
