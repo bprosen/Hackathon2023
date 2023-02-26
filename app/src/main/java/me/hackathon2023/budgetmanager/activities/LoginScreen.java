@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import me.hackathon2023.budgetmanager.BudgetManager;
@@ -96,6 +97,7 @@ public class LoginScreen extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                             //setContentView(R.layout.activity_dashboard);
+                            BudgetManager.setUser(new User(emailAddress, password));
                             loginDone();
 
                         }
@@ -216,6 +218,22 @@ public class LoginScreen extends AppCompatActivity {
     //----------------------------------------------------------------------------
     private void loginDone() {
         setContentView(R.layout.activity_dashboard);
+        TextView incomeView = ((TextView)findViewById(R.id.income_data));
+        TextView expenseView = ((TextView)findViewById(R.id.expense_data));
+        TextView balanceView = ((TextView)findViewById(R.id.balance_data));
+
+        String income = incomeView.getText().toString();
+        String expense = expenseView.getText().toString();
+        String balance = balanceView.getText().toString();
+
+        income = income.replace("(income)", String.valueOf(BudgetManager.getLoggedInUser().getIncome()));
+        expense = expense.replace("(expense)", String.valueOf(BudgetManager.getLoggedInUser().getExpense()));
+        balance = balance.replace("(balance)", String.valueOf(BudgetManager.getLoggedInUser().getBalance()));
+
+        incomeView.setText(income);
+        expenseView.setText(expense);
+        balanceView.setText(balance);
+
         AddTxn = findViewById(R.id.add_button);
 
         AddTxn.setOnClickListener(new View.OnClickListener() {
