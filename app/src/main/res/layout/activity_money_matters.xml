@@ -98,24 +98,28 @@
 
 
             <RadioButton
+                android:id="@+id/ExpenseButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Expense"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_marginLeft="20dp"
+                android:onClick="onRadioButtonClicked"
                 android:layout_alignParentLeft="true">
 
             </RadioButton>
 
 
             <RadioButton
+                android:id="@+id/IncomeButton"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Income"
                 android:textStyle="bold"
                 android:layout_weight="1"
                 android:layout_marginLeft="20dp"
+                android:onClick="onRadioButtonClicked"
                 android:layout_alignParentLeft="true">
 
             </RadioButton>

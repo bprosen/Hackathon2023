@@ -9,7 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.TextView;
+import android.widget.RadioButton;
 import android.widget.Toast;
 
 import me.hackathon2023.budgetmanager.BudgetManager;
@@ -43,6 +43,8 @@ public class LoginScreen extends AppCompatActivity {
 
     Button Add;
     Button CancelTransaction;
+    RadioButton expense;
+    private int checkButoon;
 
 
     @Override
@@ -97,7 +99,6 @@ public class LoginScreen extends AppCompatActivity {
 
                             Toast.makeText(getApplicationContext(), "Login Successful", Toast.LENGTH_SHORT).show();
                             //setContentView(R.layout.activity_dashboard);
-                            BudgetManager.setUser(new User(emailAddress, password));
                             loginDone();
 
                         }
@@ -218,22 +219,6 @@ public class LoginScreen extends AppCompatActivity {
     //----------------------------------------------------------------------------
     private void loginDone() {
         setContentView(R.layout.activity_dashboard);
-        TextView incomeView = ((TextView)findViewById(R.id.income_data));
-        TextView expenseView = ((TextView)findViewById(R.id.expense_data));
-        TextView balanceView = ((TextView)findViewById(R.id.balance_data));
-
-        String income = incomeView.getText().toString();
-        String expense = expenseView.getText().toString();
-        String balance = balanceView.getText().toString();
-
-        income = income.replace("(income)", String.valueOf(BudgetManager.getLoggedInUser().getIncome()));
-        expense = expense.replace("(expense)", String.valueOf(BudgetManager.getLoggedInUser().getExpense()));
-        balance = balance.replace("(balance)", String.valueOf(BudgetManager.getLoggedInUser().getBalance()));
-
-        incomeView.setText(income);
-        expenseView.setText(expense);
-        balanceView.setText(balance);
-
         AddTxn = findViewById(R.id.add_button);
 
         AddTxn.setOnClickListener(new View.OnClickListener() {
@@ -249,8 +234,17 @@ public class LoginScreen extends AppCompatActivity {
 
     private void processTransaction() {
 
+        expense = findViewById(R.id.ExpenseButton);
         Add = findViewById(R.id.AddButton);
         CancelTransaction = findViewById(R.id.CancelButton);
+
+        expense.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkButoon = 1;
+            }
+        });
+
         Add.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -278,9 +272,13 @@ public class LoginScreen extends AppCompatActivity {
         float amountEntered = Float.parseFloat(amount.getText().toString());
         String typeExpense = type.getText().toString();
 
-        System.out.println(amountEntered);
         System.out.println(typeExpense);
 
+        if(expense.isChecked() ){
+            amountEntered *= -1;
+        }
+
+        System.out.println(amountEntered);
 
 
     }
