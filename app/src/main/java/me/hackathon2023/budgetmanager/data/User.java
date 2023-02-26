@@ -2,11 +2,8 @@ package me.hackathon2023.budgetmanager.data;
 
 import android.database.Cursor;
 
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
 
 import me.hackathon2023.budgetmanager.BudgetManager;
 import me.hackathon2023.budgetmanager.database.DatabaseManager;
@@ -21,7 +18,7 @@ public class User
     private float expense;
     private float balance;
 
-    private List<Expenses> expenses = new ArrayList<>();
+    private List<Transactions> transactions = new ArrayList<>();
 
     public static final int MIN_PASSWORD_LENGTH = 8;
 
@@ -31,7 +28,7 @@ public class User
         this.password = password;
 
         loadName();
-        loadExpenses();
+        loadTransactions();
     }
 
     private void loadName()
@@ -49,7 +46,7 @@ public class User
         cursor.close();
     }
 
-    public void addExpense(String type, String date, float total)
+    public void addTransaction(String type, String date, float total)
     {
         // add to appropriate balances
         if (total < 0.0)
@@ -58,14 +55,14 @@ public class User
             income += total;
 
         balance += total;
-        expenses.add(new Expenses(type, date, total));
+        transactions.add(new Transactions(type, date, total));
     }
 
-    private void loadExpenses()
+    private void loadTransactions()
     {
 
         Cursor cursor = BudgetManager.getDatabaseManager().getReading().query(
-                DatabaseManager.EXPENSES_TABLE, null, "email='" + email + "'", null,
+                DatabaseManager.TRANSACTIONS_TABLE, null, "email='" + email + "'", null,
                 null, null, null);
 
         if (cursor != null)
@@ -85,7 +82,7 @@ public class User
                 balance += total;
 
                 // add into their expenses cache
-                addExpense(type, date, total);
+                addTransaction(type, date, total);
             }
         }
     }

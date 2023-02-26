@@ -18,7 +18,7 @@ public class DatabaseManager extends SQLiteOpenHelper
     public static final String DB_NAME = "database.db";
 
     public static final String USERS_TABLE = "users";
-    public static final String EXPENSES_TABLE = "expenses";
+    public static final String TRANSACTIONS_TABLE = "transactions";
 
     public DatabaseManager(ContextWrapper contextWrapper)
     {
@@ -35,7 +35,7 @@ public class DatabaseManager extends SQLiteOpenHelper
                 "password VARCHAR(100) DEFAULT NULL" +
                 ")");
 
-        database.execSQL("CREATE TABLE IF NOT EXISTS " + EXPENSES_TABLE + " (" +
+        database.execSQL("CREATE TABLE IF NOT EXISTS " + TRANSACTIONS_TABLE + " (" +
                 "email VARCHAR(50) DEFAULT 0, " +
                 "type VARCHAR(30) DEFAULT NULL, " +
                 "date TEXT DEFAULT NULL, " +

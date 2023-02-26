@@ -28,7 +28,7 @@ public class DatabaseQueries
         String date = sdf.format(timestamp);
 
         BudgetManager.getDatabaseManager().getWriting().execSQL(
-                "INSERT INTO " + DatabaseManager.EXPENSES_TABLE +
+                "INSERT INTO " + DatabaseManager.TRANSACTIONS_TABLE +
                         " (email, type, date, total) " +
                         "VALUES('" + email + "','" + type + "','" + date + "'," + total + ")"
         );
