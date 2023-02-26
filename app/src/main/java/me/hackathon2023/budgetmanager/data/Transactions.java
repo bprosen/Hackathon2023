@@ -12,4 +12,19 @@ public class Transactions
         this.date = date;
         this.total = total;
     }
+
+    public String getType()
+    {
+        return type;
+    }
+
+    public String getDate()
+    {
+        return date;
+    }
+
+    public float getTotal()
+    {
+        return total;
+    }
 }

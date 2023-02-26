@@ -6,6 +6,7 @@
     android:layout_height="100dp"
     tools:context=".activities.TxnCard">
 
+
     <androidx.cardview.widget.CardView
 
         android:id="@+id/txn_card"

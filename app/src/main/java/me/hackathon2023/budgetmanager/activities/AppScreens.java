@@ -10,9 +10,12 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.List;
+
 import me.hackathon2023.budgetmanager.BudgetManager;
 import me.hackathon2023.budgetmanager.R;
 import me.hackathon2023.budgetmanager.Utils;
+import me.hackathon2023.budgetmanager.data.Transactions;
 import me.hackathon2023.budgetmanager.data.User;
 import me.hackathon2023.budgetmanager.database.DatabaseQueries;
 
@@ -315,6 +318,19 @@ public class AppScreens extends AppCompatActivity {
     }
 
     private void mergeToDashBoard(){
+
+        String date;
+        String type;
+        float total;
+
+        List<Transactions> listOne = BudgetManager.getLoggedInUser().getTransactions();
+
+        for (Transactions transaction : listOne)
+        {
+            date = transaction.getDate();
+            type = transaction.getType();
+            total = transaction.getTotal();
+        }
 
 
 
