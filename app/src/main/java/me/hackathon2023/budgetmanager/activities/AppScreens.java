@@ -2,13 +2,10 @@ package me.hackathon2023.budgetmanager.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +18,7 @@ import me.hackathon2023.budgetmanager.database.DatabaseQueries;
 
 //import com.example.myapplication.R;
 
-public class LoginScreen extends AppCompatActivity {
+public class AppScreens extends AppCompatActivity {
 
     //Variables
     EditText newUserName, newEmail, newPassword, confirmPassword;
@@ -308,6 +305,7 @@ public class LoginScreen extends AppCompatActivity {
 
         DatabaseQueries.addTransaction(BudgetManager.getLoggedInUser().getEmail(),typeExpense,amountEntered);
         goBackToDashBoard();
+        mergeToDashBoard();
 
     }
 
@@ -315,6 +313,14 @@ public class LoginScreen extends AppCompatActivity {
     private void goBackToDashBoard(){
         loginDone();
     }
+
+    private void mergeToDashBoard(){
+
+
+
+
+    }
+
 
 
 }

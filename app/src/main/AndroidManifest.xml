@@ -16,27 +16,7 @@
             android:exported="false" />
         <activity android:name=".BudgetManager" />
         <activity
-            android:name=".activities.LoginScreen"
-            android:exported="true"
-            android:label="@string/budget_manager">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.Login"
-            android:exported="true"
-            android:label="@string/budget_manager">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.Register"
+            android:name=".activities.AppScreens"
             android:exported="true"
             android:label="@string/budget_manager">
             <intent-filter>
